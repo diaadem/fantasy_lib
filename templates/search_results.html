@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container">
+    <h2 style="font-family: 'Trebuchet MS'; color: #3A3A3A; font-weight: bold;">{% if query %}Search Results for "{{ query }}"{% else %}All Books{% endif %}</h2>
+    <hr>
+    <p style="font-family: 'Trebuchet MS';">{{ search_results|length }} results found.</p>
+
+    <div class="large-card" style="padding-top: 50px;padding-right: 50px; padding-left: 50px ;">
+
+        {% if search_results %}
+        <div class="row">
+            {% for book in search_results %}
+            <div class="col-md-3">
+                <div class="book-card2 h-100 w-100 mb-3 g-4">
+                    <a href="/view/{{ book['id'] }}">
+                        <img src="{{ book.image }}" alt="{{ book.title }}" class="book-res-img">
+                    </a>
+                    <div class="book-info">
+                        <h3 class="book-title" style="padding-top: 15px;padding-bottom: 5px; font-size: 16px">
+                            {% for word in book.title.split() %}
+                                {% if query.lower() in word.lower() %}
+                                    <span class="highlight">{{ word }}</span>
+                                {% else %}
+                                    {{ word }}
+                                {% endif %}
+                                {% if not loop.last %} {% endif %}
+                            {% endfor %}
+                        </h3>
+                        <div class="rating">
+                            <div class="star-rating">
+                                {% for i in range(5) %}
+                                {% if i < book.rating|round %}
+                                <span class="fa fa-star checked"></span>
+                                {% else %}
+                                <span class="fa fa-star"></span>
+                                {% endif %}
+                                {% endfor %}
+                                <span class="rating-number">{{ book.rating }}</span>
+                            </div>
+                        </div>
+                        <p class="book-author" style="padding-bottom: 5px">
+                            {% if query.lower() in book.author.lower() %}
+                                <span class="highlight">{{ book.author }}</span>
+                            {% else %}
+                                {{ book.author }}
+                            {% endif %}
+                        </p>
+
+                        {% if book.genre %}
+                        <ul class="book-genres"style="padding-bottom: 40px">
+                            {% for genre in book.genre %}
+                                {% if query.lower() in genre.lower() %}
+                                    <li><span class="highlight">{{ genre }}</span></li>
+                                {% else %}
+                                    <li>{{ genre }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No results found.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+

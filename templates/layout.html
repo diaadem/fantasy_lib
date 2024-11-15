@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Fantasy Library{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    .checked {
+      color: #f5c518;
+      
+     }
+
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #f2f2f2">
+        <a class="navbar-brand" style="font-family: 'Trebuchet MS', sans-serif" href="/">Fantasy Library</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto"> <!-- Add mr-auto class here -->
+                <li class="nav-item">
+                    <button class="button" style="border-radius: 12px; text-align: center; padding-top: 5px; padding-bottom: 5px; margin-left: 15px; padding-right: 20px; padding-left: 20px;font-family: 'Trebuchet MS', sans-serif; font-size:13px" onclick= "window.location.href='/add'">ADD BOOK</button>
+                </li>
+            </ul>
+            <form id="search-form" class="form-inline my-2 my-lg-0" action="/search" method="get">
+                <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
+                <button class="btn btn-outline-success my-2 my-sm-0" style="font-size:13px; background-color: #6d5e7d; border: none; color: white; border-radius: 12px; text-align: center; padding: 8px" "submit">GO</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% block body %}{% endblock %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

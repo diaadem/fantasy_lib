@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ item.title }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="large-card" style="padding: 25px;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{ item.image }}" alt="{{ item.title }}" class="img-fluid book-view-img">
+                        <!-- <p style="font-family: 'Trebuchet MS'; color: #827E83; padding-top: 15px; font-size: 15px"><strong>Genre:</strong>
+                                {% for genre in item.genre %}
+                                <button type="button" class="button button4 btn-xs" style= "padding: 5px; background-color:#A090A6; font-family: 'Trebuchet MS';font-size: 15"data-genre="{{ genre }}">{{ genre }}</button>
+                                {% endfor %}
+                            </p> -->
+                        <p style="font-family: 'Trebuchet MS'; color: #A2A2A2; padding-top: 15px; font-size: 13px"><strong>Published:</strong> {{ item['published date'] }} by {{ item.publisher }}</p>
+                    </div>
+                    <div class="col-md-8">
+                        <h2 style="font-family: 'Trebuchet MS'; color: #454443; font-size: 45px; font-weight: bold;">{{ item.title }}</h2>
+
+                        <div class="book-details" style="border-radius: 5px;">
+                            <p class="author-name"><strong>Author:</strong> {{ item.author }}</p>
+                            <div class="rating">
+                                <div class="star-rating">
+                                    {% for i in range(5) %}
+                                    {% if i < item.rating|round %}
+                                    <span class="fa fa-star checked large-star"></span>
+                                    {% else %}
+                                    <span class="fa fa-star large-star"></span>
+                                    {% endif %}
+                                    {% endfor %}
+                                    <span class="rating-number large-rating" style="font-size: 50"> {{ item.rating }}</span>
+                                </div>
+                            </div>
+                            <p>{{ item.summary }}</p>
+                            <p style="font-family: 'Trebuchet MS'; color: #827E83; padding-top: 15px; font-size: 15px"><strong>Genre:</strong>
+                                {% for genre in item.genre %}
+                                <button type="button" class="button button4 btn-xs" style= "padding: 5px; background-color:#A090A6; font-family: 'Trebuchet MS';font-size: 15"data-genre="{{ genre }}">{{ genre }}</button>
+                                {% endfor %}
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mt-4">
+                <a href="/" style="font-family: 'Trebuchet MS';font-size: 15px;" class="btn btn-secondary button4">GO BACK</a>
+                <a href="/edit/{{ item.id }}" style="font-family: 'Trebuchet MS'" class="btn btn-secondary button3">EDIT</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .large-star {
+        font-size: 24px;
+    }
+
+    .large-rating {
+        font-size: 18px;
+        margin-left: 5px;
+    }
+
+    .author-name {
+        font-size: 18px;
+    }
+</style>
+{% endblock %}

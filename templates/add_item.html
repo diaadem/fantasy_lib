@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2 style="font-family: 'Trebuchet MS'; color: ##3A3A3A; font-weight: bold;">Add New Book</h2>
+    <hr>
+
+    <div id="successMessage" style="display: none;"></div>
+    <div class="large-card" style="padding: 50px">
+         <form id="addItemForm" action="{{ url_for('add_data_post') }}" method="post" novalidate>
+    <!-- {% if success_message %}
+    <div class="alert alert-success" role="alert">
+        {{ success_message }}
+    </div>
+    <a href="{{ url_for('view_data', id=item.id) }}" class="btn btn-primary">View Item</a>
+    <a href="{{ url_for('add_data') }}" class="btn btn-secondary">Add a New Entry</a>
+    {% endif %}
+ -->
+   <!--  <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+            Review Added Successfully.
+            <a id="viewReviewButton" href="#" class="btn btn-success ml-2">View Review</a>
+            <a href="/add" class="btn btn-primary ml-2">Add New Review</a>
+        </div> -->
+
+    <!-- <div id="successMessage" style="display: none;"></div>
+
+    <form id="addItemForm" action="{{ url_for('add_data_post') }}" method="post" novalidate> -->
+    <!-- <form id="addItemForm" action="/add" method="post" novalidate> -->
+            <div class="form-group"style="font-family: 'Trebuchet MS'">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+                <div class="invalid-feedback">Please enter a title.</div>
+            </div>
+            <div class="form-group" style="font-family: 'Trebuchet MS'">
+                <label for="author">Author:</label>
+                <input type="text" class="form-control" id="author" name="author" required>
+                <div class="invalid-feedback">Please enter an author name.</div>
+            </div>
+            <div class="form-group" style="font-family: 'Trebuchet MS'">
+                <label for="rating">Rating:</label>
+                <input type="number" class="form-control" id="rating" name="rating" min="0" max="5" step="0.01" required pattern="^[0-5](\.\d{1,2})?$">
+                <div class="invalid-feedback">Rating must be between 0 and 5 with up to two decimal places.</div>
+            </div>
+            <div class="form-group" style="font-family: 'Trebuchet MS'">
+                <label for="publisher">Publisher:</label>
+                <input type="text" class="form-control" id="publisher" name="publisher" required>
+                <div class="invalid-feedback">Please enter a publisher name.</div>
+            </div>
+            <div class="form-group" style="font-family: 'Trebuchet MS'">
+                <label for="publishedDate">Published Date:</label>
+                <input type="date" class="form-control" id="publishedDate" name="published_date" max="{{ max_date }}" required>
+                <div class="invalid-feedback">Please select a valid publication date.</div>
+            </div>
+            <div class="form-group" style="font-family: 'Trebuchet MS'">
+                <label for="imageUrl">Image URL:</label>
+                <input type="url" class="form-control" id="imageUrl" name="image_url" required>
+                <div class="invalid-feedback">Please enter a valid image URL.</div>
+            </div>
+            <div class="form-group" style="font-family: 'Trebuchet MS'">
+                <label for="summary">Summary:</label>
+                <textarea class="form-control" id="summary" name="summary" rows="4" required></textarea>
+                <div class="invalid-feedback">Please enter a summary.</div>
+            </div>
+            <div class="form-group" style="font-family: 'Trebuchet MS'">
+                <label for="genre">Genre:</label>
+                <input type="text" class="form-control" id="genre" name="genre" required>
+                <small class="form-text text-muted">Enter genres separated by commas (e.g., genre1, genre2).</small>
+                <div class="invalid-feedback">Please enter at least one genre.</div>
+            </div>
+            <button type="submit" style="font-family: 'Trebuchet MS'" class="btn btn-primary button4">SUMBIT</button>
+        </form>
+
+    </div>
+    
+
+   
+
+</div>
+{% endblock %}
+
+<!-- {% block scripts %}
+<script>
+$(document).ready(function() {
+    $('#addItemForm').submit(function(event) {
+        event.preventDefault();
+        
+        var form = $(this);
+        if (!form[0].checkValidity()) {
+            event.stopPropagation();
+        } else {
+            var formData = form.serialize();
+
+            $.ajax({
+                url: '/add',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    $('#successMessage').show();
+                    $('#viewReviewButton').attr('href', '/view/' + response.id);
+                    
+                    form.trigger('reset');
+                    form.removeClass('was-validated');
+                    $('#title').focus();
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error adding item:', error);
+                    $('#errorMessage').text('Error adding item. Please try again.').show();
+                }
+            });
+        }
+        form.addClass('was-validated');
+    });
+});
+</script>
+{% endblock %}
+ -->
